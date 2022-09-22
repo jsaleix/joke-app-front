@@ -1,24 +1,36 @@
-import logo from './logo.svg';
+import { useState, useEffect } from 'react';
 import './App.css';
 
 function App() {
+  const [joke, setJoke] = useState("");
+  const [version, setVersion] = useState("");
+  
+  useEffect(() => {
+    (async () => {
+      //const response = await fetch(process.env.URL);
+      const response = await fetch("https://joke-api-iw3.herokuapp.com/");
+      const {joke, version } = await response.json();
+      setJoke(joke);
+      setVersion(version);
+    })();
+  }, [])
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div class="navbar bg-base-100">
+      <a class="btn btn-ghost normal-case text-xl">API Version : {version}</a>
+      </div>
+      <div class="hero min-h-screen bg-base-200">
+          <div class="hero-content text-center">
+              <div class="max-w-md">
+                  <h1 class="text-5xl font-bold text-red-500">{joke.category}</h1>
+                  <p class="py-6">{joke.setup}</p>
+                  <p class="py-6">{joke.delivery}</p>
+                  <p class="py-6">{joke.joke}</p>
+              </div>
+          </div>
+      </div>
+    </>
   );
 }
 
