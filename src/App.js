@@ -18,7 +18,7 @@ function App() {
     <>
       <div class="navbar bg-base-100">
         <a class="btn btn-ghost normal-case text-xl">API Version : {version}</a>
-        <a class="btn btn-ghost normal-case text-xl">Front Version : 1</a>
+        <a class="btn btn-ghost normal-case text-xl">Front Version : {REACT_APP_VERSION}</a>
       </div>
       <div class="hero min-h-screen bg-base-200">
           <div class="hero-content text-center">
