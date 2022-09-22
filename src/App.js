@@ -7,13 +7,12 @@ function App() {
   
   useEffect(() => {
     (async () => {
-      //const response = await fetch(process.env.URL);
-      const response = await fetch("https://joke-api-iw3.herokuapp.com/");
+      const response = await fetch(process.env.REACT_APP_API_URL);
       const {joke, version } = await response.json();
       setJoke(joke);
       setVersion(version);
     })();
-  }, [])
+  }, [process.env.REACT_APP_API_URL])
   
   return (
     <>
